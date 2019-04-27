@@ -9,7 +9,7 @@ DrawCallRef_t DrawCall::createInstance() {
 	return instance;
 }
 
-void DrawCall::execute(PrimitiveType_t topology, s32_t count, BufferRef_t ibo, Type_t type) {
+void DrawCall::execute(PrimitiveType_t topology, s32_t count, BufferRef_t ibo, core::detail::DataType_t type) {
 	boost::ignore_unused(topology);
 	boost::ignore_unused(count);
 	boost::ignore_unused(ibo);
