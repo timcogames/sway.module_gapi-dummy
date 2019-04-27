@@ -3,9 +3,11 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-DLLAPI_EXPORT BufferRef_t createBuffer(const BufferCreateInfo & createInfo) {
-	auto instance = boost::make_shared<Buffer>(createInfo.desc);
-	if (instance->allocate(createInfo.data)) return instance;
+BufferRef_t Buffer::createInstance(const BufferCreateInfo & createInfo) {
+	auto instance = std::make_shared<Buffer>(createInfo.desc);
+	if (instance->allocate(createInfo.data))
+		return instance;
+
 	return nullptr;
 }
 

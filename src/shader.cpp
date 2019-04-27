@@ -3,10 +3,16 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-DLLAPI_EXPORT ShaderRef_t createShader(const ShaderCreateInfo & createInfo) {
-	auto instance = boost::make_shared<Shader>(createInfo.type);
-	instance->compile(createInfo.code.c_str());
-	return instance;
+ShaderRef_t Shader::createInstance(const ShaderCreateInfo & createInfo) {
+	try {
+		auto instance = std::make_shared<Shader>(createInfo.type);
+		instance->compile(createInfo.code.c_str());
+		return instance;
+	}
+	catch (std::exception & exception) {
+		fprintf(stderr, "ERROR: %s shader object creation failed.\n", stringize(createInfo.type).c_str());
+		throw;
+	}
 }
 
 Shader::Shader(ShaderType_t type) : AShaderBase(type)

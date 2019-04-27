@@ -8,6 +8,8 @@ NAMESPACE_BEGIN(gapi)
 
 class DrawCall : public IDrawCallBase {
 public:
+	static DrawCallRef_t createInstance();
+	
 	/*!
 	 * \brief
 	 *    Конструктор класса.

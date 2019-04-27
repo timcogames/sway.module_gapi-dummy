@@ -12,6 +12,8 @@ NAMESPACE_BEGIN(gapi)
  */
 class Buffer final : public ABufferBase {
 public:
+	static BufferRef_t createInstance(const BufferCreateInfo & createInfo);
+
 	/*!
 	 * \brief
 	 *    Конструктор класса.

@@ -3,8 +3,8 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-DLLAPI_EXPORT VertexLayoutRef_t createVertexLayout(ShaderProgramRef_t program) {
-	auto instance = boost::make_shared<VertexLayout>(program);
+VertexLayoutRef_t VertexLayout::createInstance(ShaderProgramRef_t program) {
+	auto instance = std::make_shared<VertexLayout>(program);
 	return instance;
 }
 

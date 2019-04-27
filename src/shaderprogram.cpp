@@ -4,8 +4,8 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-DLLAPI_EXPORT ShaderProgramRef_t createShaderProgram() {
-	auto instance = boost::make_shared<ShaderProgram>();
+ShaderProgramRef_t ShaderProgram::createInstance() {
+	auto instance = std::make_shared<ShaderProgram>();
 	return instance;
 }
 
