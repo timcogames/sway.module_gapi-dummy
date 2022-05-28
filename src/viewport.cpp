@@ -1,35 +1,27 @@
-#include <sway/gapi/dummy/viewport.h>
+#include <sway/gapi/dummy/viewport.hpp>
 
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
 ViewportRef_t Viewport::createInstance() {
-	auto instance = std::make_shared<Viewport>();
-	return instance;
+  auto instance = std::make_shared<Viewport>();
+  return instance;
 }
 
 Viewport::Viewport() {
-	// Empty
+  // Empty
 }
 
-void Viewport::set(s32_t x, s32_t y, s32_t w, s32_t h) {
-	boost::ignore_unused(x);
-	boost::ignore_unused(y);
-	boost::ignore_unused(w);
-	boost::ignore_unused(h);
+void Viewport::set(
+    [[maybe_unused]] s32_t x, [[maybe_unused]] s32_t y, [[maybe_unused]] s32_t w, [[maybe_unused]] s32_t h) {
+  // Empty
 }
 
-void Viewport::set(s32_t w, s32_t h) {
-	set(0, 0, w, h);
-}
+void Viewport::set(s32_t w, s32_t h) { set(0, 0, w, h); }
 
-math::rect4i_t Viewport::get() const {
-	return math::TRect<s32_t>();
-}
+math::rect4i_t Viewport::get() const { return math::TRect<s32_t>(); }
 
-f32_t Viewport::aspect() const {
-	return 0.0f;
-}
+f32_t Viewport::aspect() const { return 0.0f; }
 
 NAMESPACE_END(gapi)
 NAMESPACE_END(sway)

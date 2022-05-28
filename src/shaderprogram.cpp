@@ -1,68 +1,58 @@
-#include <sway/gapi/dummy/shaderprogram.h>
-#include <sway/gapi/dummy/shader.h>
+#include <sway/gapi/dummy/shader.hpp>
+#include <sway/gapi/dummy/shaderprogram.hpp>
 
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
 ShaderProgramRef_t ShaderProgram::createInstance() {
-	auto instance = std::make_shared<ShaderProgram>();
-	return instance;
+  auto instance = std::make_shared<ShaderProgram>();
+  return instance;
 }
 
 ShaderProgram::ShaderProgram()
-	: _linked(false)
-	, _validated(false) {
-	// Empty
+    : linked_(false)
+    , validated_(false) {
+  // Empty
 }
 
 ShaderProgram::~ShaderProgram() {
-	// Empty
+  // Empty
 }
 
-void ShaderProgram::attach(ShaderRef_t shader) {
-	boost::ignore_unused(shader);
+void ShaderProgram::attach([[maybe_unused]] ShaderRef_t shader) {
+  // Empty
 }
 
-void ShaderProgram::detach(u32_t attachedId) {
-	boost::ignore_unused(attachedId);
+void ShaderProgram::detach([[maybe_unused]] u32_t attachedId) {
+  // Empty
 }
 
-void ShaderProgram::link() {
-	_linked = true;
-}
+void ShaderProgram::link() { linked_ = true; }
 
-bool ShaderProgram::isLinked() const {
-	return _linked;
-}
+bool ShaderProgram::isLinked() const { return linked_; }
 
-void ShaderProgram::validate() {
-	_validated = true;
-}
+void ShaderProgram::validate() { validated_ = true; }
 
-bool ShaderProgram::isValidated() const {
-	return _validated;
-}
+bool ShaderProgram::isValidated() const { return validated_; }
 
 void ShaderProgram::use() {
-	// Empty
+  // Empty
 }
 
 void ShaderProgram::unuse() {
-	// Empty
+  // Empty
 }
 
-bool ShaderProgram::isUsed() const {
-	return false;
+bool ShaderProgram::isUsed() const { return false; }
+
+void ShaderProgram::setUniformVec4f(
+    [[maybe_unused]] const std::string &uniform, [[maybe_unused]] const math::vec4f_t &vec) {
+  // Empty
 }
 
-void ShaderProgram::setUniformVec4f(const std::string & uniform, const math::vec4f_t & vec) {
-	boost::ignore_unused(uniform);
-	boost::ignore_unused(vec);
-}
-
-void ShaderProgram::setUniformCol4f(const std::string & uniform, const math::col4f_t & col) {
-	boost::ignore_unused(uniform);
-	boost::ignore_unused(col);
+void ShaderProgram::setUniformCol4f(
+    [[maybe_unused]] const std::string &uniform, [[maybe_unused]] const math::col4f_t &col) {
+  // Empty
 }
 
 NAMESPACE_END(gapi)

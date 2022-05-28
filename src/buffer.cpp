@@ -1,74 +1,62 @@
-#include <sway/gapi/dummy/buffer.h>
+#include <sway/gapi/dummy/buffer.hpp>
 
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-BufferRef_t Buffer::createInstance(const BufferCreateInfo & createInfo) {
-	auto instance = std::make_shared<Buffer>(createInfo.desc);
-	if (instance->allocate(createInfo.data))
-		return instance;
+BufferRef_t Buffer::createInstance(const BufferCreateInfo &createInfo) {
+  auto instance = std::make_shared<Buffer>(createInfo.desc);
+  if (instance->allocate(createInfo.data)) {
+    return instance;
+  }
 
-	return nullptr;
+  return nullptr;
 }
 
-Buffer::Buffer(const BufferDescriptor & desc) : ABufferBase(desc)
-	, _target(desc.target)
-	, _usage(desc.usage)
-	, _byteStride(desc.byteStride)
-	, _capacity(desc.capacity) {
-	// Empty
+Buffer::Buffer(const BufferDescriptor &desc)
+    : ABufferBase(desc)
+    , target_(desc.target)
+    , usage_(desc.usage)
+    , byteStride_(desc.byteStride)
+    , capacity_(desc.capacity) {
+  // Empty
 }
 
 Buffer::~Buffer() {
-	// Empty
+  // Empty
 }
 
-bool Buffer::allocate(const void * data) {
-	boost::ignore_unused(data);
-	return true;
+bool Buffer::allocate([[maybe_unused]] const void *data) { return true; }
+
+void Buffer::updateSubdata(
+    [[maybe_unused]] u32_t offset, [[maybe_unused]] u32_t size, [[maybe_unused]] const void *source) {
+  // Empty
 }
 
-void Buffer::updateSubdata(u32_t offset, u32_t size, const void * source) {
-	boost::ignore_unused(offset);
-	boost::ignore_unused(size);
-	boost::ignore_unused(source);
+void Buffer::updateSubdata([[maybe_unused]] const void *source) {
+  // Empty
 }
 
-void Buffer::updateSubdata(const void * source) {
-	boost::ignore_unused(source);
-}
-
-void * Buffer::map() {
-	return NULL;
-}
+void *Buffer::map() { return nullptr; }
 
 void Buffer::unmap() {
-	// Empty
+  // Empty
 }
 
 void Buffer::bind() {
-	// Empty
+  // Empty
 }
 
 void Buffer::unbind() {
-	// Empty
+  // Empty
 }
 
-BufferTarget_t Buffer::getTarget() const {
-	return _target;
-}
+BufferTarget_t Buffer::getTarget() const { return target_; }
 
-BufferUsage_t Buffer::getUsage() const {
-	return _usage;
-}
+BufferUsage_t Buffer::getUsage() const { return usage_; }
 
-s32_t Buffer::getCapacity() const {
-	return _capacity;
-}
+s32_t Buffer::getCapacity() const { return capacity_; }
 
-s32_t Buffer::getByteStride() const {
-	return _byteStride;
-}
+s32_t Buffer::getByteStride() const { return byteStride_; }
 
 NAMESPACE_END(gapi)
 NAMESPACE_END(sway)

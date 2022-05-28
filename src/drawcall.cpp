@@ -1,19 +1,17 @@
-#include <sway/gapi/dummy/drawcall.h>
-#include <sway/gapi/dummy/buffer.h>
+#include <sway/gapi/dummy/buffer.hpp>
+#include <sway/gapi/dummy/drawcall.hpp>
 
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
 DrawCallRef_t DrawCall::createInstance() {
-	auto instance = std::make_shared<DrawCall>();
-	return instance;
+  auto instance = std::make_shared<DrawCall>();
+  return instance;
 }
 
-void DrawCall::execute(TopologyType_t topology, s32_t count, BufferRef_t ibo, core::detail::DataType_t type) {
-	boost::ignore_unused(topology);
-	boost::ignore_unused(count);
-	boost::ignore_unused(ibo);
-	boost::ignore_unused(type);
+void DrawCall::execute([[maybe_unused]] TopologyType_t topology, [[maybe_unused]] s32_t count,
+    [[maybe_unused]] BufferRef_t ibo, [[maybe_unused]] core::detail::DataType_t type) {
+  // Empty
 }
 
 NAMESPACE_END(gapi)
