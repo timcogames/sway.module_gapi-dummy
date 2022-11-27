@@ -6,140 +6,120 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-/*!
- * \brief
- *    Представление шейдерной программы.
+/**
+ * @brief Представление шейдерной программы.
+ *
  */
 class ShaderProgram final : public AShaderProgramBase {
 public:
   static ShaderProgramRef_t createInstance();
 
-  /*!
-   * \brief
-   *    Конструктор класса.
-   *    Выполняет инициализацию нового экземпляра класса.
+  /**
+   * @brief Конструктор класса.
+   * Выполняет инициализацию нового экземпляра класса.
+   *
    */
   ShaderProgram();
 
-  /*!
-   * \brief
-   *    Деструктор класса.
-   *    Освобождает захваченные ресурсы.
+  /**
+   * @brief Деструктор класса.
+   * Освобождает захваченные ресурсы.
+   *
    */
   virtual ~ShaderProgram();
 
-  /*!
-   * \brief
-   *    Связывает шейдерный объект с программным объектом.
+  /**
+   * @brief Связывает шейдерный объект с программным объектом.
    *
-   * \param[in] shader
-   *    Указатель на связываемый шейдерный объект.
+   * @param[in] shader Указатель на связываемый шейдерный объект.
    *
-   * \sa
-   *    detach(u32_t)
+   * @sa detach(u32_t)
+   *
    */
   virtual void attach(ShaderRef_t shader);
 
-  /*!
-   * \brief
-   *    Отсоединяет шейдерный объект от программного объекта.
+  /**
+   * @brief Отсоединяет шейдерный объект от программного объекта.
    *
-   * \param[in] attachedId
-   *    Отвязываемый шейдерный объект.
+   * @param[in] attachedId Отвязываемый шейдерный объект.
    *
-   * \sa
-   *    attach(ShaderRef_t)
+   * @sa attach(ShaderRef_t)
+   *
    */
   virtual void detach(u32_t attachedId);
 
-  /*!
-   * \brief
-   *    Компонует программный объект.
+  /**
+   * @brief Компонует программный объект.
    *
-   * \sa
-   *    isLinked() const
+   * @sa isLinked() const
+   *
    */
   virtual void link();
 
-  /*!
-   * \brief
-   *    Возвращает статус компоновки.
+  /**
+   * @brief Возвращает статус компоновки.
    *
-   * \sa
-   *    link()
+   * @sa link()
+   *
    */
   virtual bool isLinked() const;
 
-  /*!
-   * \brief
-   *    Проверяет скомпоновонный объект на корректность.
+  /**
+   * @brief Проверяет скомпоновонный объект на корректность.
    *
-   * \sa
-   *    isValidated() const
+   * @sa isValidated() const
+   *
    */
   virtual void validate();
 
-  /*!
-   * \brief
-   *    Возвращает статус корректности скомпоновоного объекта.
+  /**
+   * @brief Возвращает статус корректности скомпоновоного объекта.
    *
-   * \sa
-   *    validate()
+   * @sa validate()
+   *
    */
   virtual bool isValidated() const;
 
-  /*!
-   * \brief
-   *    Делает шейдерную программу активной.
+  /**
+   * @brief Делает шейдерную программу активной.
    *
-   * \sa
-   *    unuse()
-   *    isUsed() const
+   * @sa unuse(), isUsed() const
+   *
    */
   virtual void use();
 
-  /*!
-   * \brief
-   *    Деактивирует шейдерную программу.
+  /**
+   * @brief Деактивирует шейдерную программу.
    *
-   * \sa
-   *    use()
-   *    isUsed() const
+   * @sa use(), isUsed() const
+   *
    */
   virtual void unuse();
 
-  /*!
-   * \brief
-   *    Возвращает логическое значение, которое определяет,
-   *    является ли шейдерная программа активной в текущем состоянии рендеринга.
+  /**
+   * @brief Возвращает логическое значение, которое определяет,
+   * является ли шейдерная программа активной в текущем состоянии рендеринга.
    *
-   * \sa
-   *    use()
-   *    unuse()
+   * @sa use(), unuse()
+   *
    */
   virtual bool isUsed() const;
 
-  /*!
-   * \brief
-   *    Передает значение uniform-переменной в шейдер.
+  /**
+   * @brief Передает значение uniform-переменной в шейдер.
    *
-   * \param[in] uniform
-   *    Имя uniform-переменной.
+   * @param[in] uniform Имя uniform-переменной.
+   * @param[in] vec Значение uniform-переменной.
    *
-   * \param[in] vec
-   *    Значение uniform-переменной.
    */
   virtual void setUniformVec4f(const std::string &uniform, const math::vec4f_t &vec);
 
-  /*!
-   * \brief
-   *    Передает значение uniform-переменной в шейдер.
+  /**
+   * @brief Передает значение uniform-переменной в шейдер.
    *
-   * \param[in] uniform
-   *    Имя uniform-переменной.
+   * @param[in] uniform Имя uniform-переменной.
+   * @param[in] col Значение uniform-переменной.
    *
-   * \param[in] col
-   *    Значение uniform-переменной.
    */
   virtual void setUniformCol4f(const std::string &uniform, const math::col4f_t &col);
 
@@ -151,4 +131,4 @@ private:
 NAMESPACE_END(gapi)
 NAMESPACE_END(sway)
 
-#endif
+#endif  // SWAY_GAPI_DUMMY_SHADERPROGRAM_HPP

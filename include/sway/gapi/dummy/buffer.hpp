@@ -6,126 +6,113 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-/*!
- * \brief
- *    Представление аппаратного буфера.
+/**
+ * @brief Представление аппаратного буфера.
+ *
  */
 class Buffer final : public ABufferBase {
 public:
   static BufferRef_t createInstance(const BufferCreateInfo &createInfo);
 
-  /*!
-   * \brief
-   *    Конструктор класса.
-   *    Выполняет инициализацию нового экземпляра класса.
+  /**
+   * @brief Конструктор класса.
+   * Выполняет инициализацию нового экземпляра класса.
+   *
    */
   Buffer(const BufferDescriptor &desc);
 
-  /*!
-   * \brief
-   *    Деструктор класса.
-   *    Освобождает захваченные ресурсы.
+  /**
+   * @brief Деструктор класса.
+   * Освобождает захваченные ресурсы.
+   *
    */
   virtual ~Buffer();
 
-  /*!
-   * \brief
-   *    Устанавливает данные в аппаратный буфер.
+  /**
+   * @brief Устанавливает данные в аппаратный буфер.
    *
-   * \param[in] data
-   *    Первоначальный данные.
+   * @param[in] data Первоначальный данные.
+   *
    */
   virtual bool allocate(const void *data);
 
-  /*!
-   * \brief
-   *    Изменяет данные в уже существующем буфере.
+  /**
+   * @brief Изменяет данные в уже существующем буфере.
    *
-   * \param[in] offset
-   *    Начало изменяемого блока данных.
+   * @param[in] offset Начало изменяемого блока данных.
+   * @param[in] size Размер изменяемого блока данных.
+   * @param[in] source Область памяти, содержащая новые значения.
    *
-   * \param[in] size
-   *    Размер изменяемого блока данных.
+   * @sa updateSubdata(const void *)
    *
-   * \param[in] source
-   *    Область памяти, содержащая новые значения.
-   *
-   * \sa
-   *    updateSubdata(const void *)
    */
   virtual void updateSubdata(u32_t offset, u32_t size, const void *source);
 
-  /*!
-   * \brief
-   *    Изменяет данные в уже существующем буфере.
+  /**
+   * @brief Изменяет данные в уже существующем буфере.
    *
-   * \param[in] source
-   *    Область памяти, содержащая новые значения.
+   * @param[in] source Область памяти, содержащая новые значения.
    *
-   * \sa
-   *    updateSubdata(u32_t, u32_t, const void *)
+   * @sa updateSubdata(u32_t, u32_t, const void *)
+   *
    */
   virtual void updateSubdata(const void *source);
 
-  /*!
-   * \brief
-   *    Получает указатель на область памяти, в которой находятся данные буфера.
+  /**
+   * @brief Получает указатель на область памяти, в которой находятся данные буфера.
    *
-   * \sa
-   *    unmap()
+   * @sa unmap()
+   *
    */
-  virtual void *map();
+  virtual auto map() -> void *;
 
-  /*!
-   * \brief
-   *    Возвращает данные буфера в память.
+  /**
+   * @brief Возвращает данные буфера в память.
    *
-   * \sa
-   *    map()
+   * @sa map()
+   *
    */
   virtual void unmap();
 
-  /*!
-   * \brief
-   *    Делает буфер текущим.
+  /**
+   * @brief Делает буфер текущим.
    *
-   * \sa
-   *    unbind()
+   * @sa unbind()
+   *
    */
   virtual void bind();
 
-  /*!
-   * \brief
-   *    Делает текущим пустой буфер.
+  /**
+   * @brief Делает текущим пустой буфер.
    *
-   * \sa
-   *    bind()
+   * @sa bind()
+   *
    */
   virtual void unbind();
 
-  /*!
-   * \brief
-   *    Получает целевой тип буфера.
+  /**
+   * @brief Получает целевой тип буфера.
+   *
    */
-  virtual BufferTarget_t getTarget() const;
+  virtual auto getTarget() const -> BufferTarget_t;
 
-  /*!
-   * \brief
-   *    Получает режим работы с данными.
+  /**
+   * @brief Получает режим работы с данными.
+   *
    */
-  virtual BufferUsage_t getUsage() const;
+  virtual auto getUsage() const -> BufferUsage_t;
 
-  /*!
-   * \brief
-   *    Получает количество элементов в массиве.
+  /**
+   * @brief Получает количество элементов в массиве.
+   *
    */
-  virtual s32_t getCapacity() const;
+  virtual auto getCapacity() const -> s32_t;
 
-  /*!
-   * \brief
-   *    Получает размер структуры данных.
+  /**
+   * @brief Получает размер структуры данных.
+   *
    */
-  virtual s32_t getByteStride() const;
+  virtual auto getByteStride() const -> s32_t;
 
 private:
   BufferTarget_t target_;
@@ -137,4 +124,4 @@ private:
 NAMESPACE_END(gapi)
 NAMESPACE_END(sway)
 
-#endif
+#endif  // SWAY_GAPI_DUMMY_BUFFER_HPP

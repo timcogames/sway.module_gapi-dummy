@@ -9,4 +9,4 @@
 #include <sway/gapi/dummy/vertexlayout.hpp>
 #include <sway/gapi/dummy/viewport.hpp>
 
-#endif
+#endif  // SWAY_GAPI_DUMMY_HPP

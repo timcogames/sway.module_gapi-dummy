@@ -8,29 +8,29 @@ NAMESPACE_BEGIN(gapi)
 
 class Capability : public ICapabilityBase {
 public:
-  static CapabilityRef_t createInstance();
+  static auto createInstance() -> CapabilityRef_t;
 
-  /*!
-   * \brief
-   *    Конструктор класса.
-   *    Выполняет инициализацию нового экземпляра класса.
+  /**
+   * @brief Конструктор класса.
+   * Выполняет инициализацию нового экземпляра класса.
+   *
    */
   Capability();
 
-  /*!
-   * \brief
-   *    Деструктор класса.
+  /**
+   * @brief Деструктор класса.
+   *
    */
   virtual ~Capability();
 
-  /*!
-   * \brief
-   *    Возвращает версию OpenGL.
+  /**
+   * @brief Возвращает версию OpenGL.
+   *
    */
-  virtual core::Version getVersion() const;
+  virtual auto getVersion() const -> core::Version;
 };
 
 NAMESPACE_END(gapi)
 NAMESPACE_END(sway)
 
-#endif
+#endif  // SWAY_GAPI_DUMMY_CAPABILITY_HPP

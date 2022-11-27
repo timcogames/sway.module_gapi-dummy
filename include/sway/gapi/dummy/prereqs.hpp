@@ -9,4 +9,4 @@
 #include <set>  // std::set
 #include <string.h>  // std::string, strstr
 
-#endif
+#endif  // SWAY_GAPI_GL_PREREQS_HPP
