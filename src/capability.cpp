@@ -3,7 +3,7 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-CapabilityRef_t Capability::createInstance() {
+auto Capability::createInstance() -> CapabilityRef_t {
   auto instance = std::make_shared<Capability>();
   return instance;
 }
@@ -16,7 +16,7 @@ Capability::~Capability() {
   // Empty
 }
 
-core::Version Capability::getVersion() const { return core::Version(); }
+auto Capability::getVersion() const -> core::Version { return core::Version(); }
 
 NAMESPACE_END(gapi)
 NAMESPACE_END(sway)

@@ -8,111 +8,93 @@ NAMESPACE_BEGIN(gapi)
 
 /**
  * @brief Представление аппаратного буфера.
- *
  */
 class Buffer final : public ABufferBase {
 public:
-  static BufferRef_t createInstance(const BufferCreateInfo &createInfo);
+  static auto createInstance(const BufferCreateInfo &createInfo) -> BufferRef_t;
 
   /**
    * @brief Конструктор класса.
-   * Выполняет инициализацию нового экземпляра класса.
-   *
+   *        Выполняет инициализацию нового экземпляра класса.
    */
   Buffer(const BufferDescriptor &desc);
 
   /**
    * @brief Деструктор класса.
-   * Освобождает захваченные ресурсы.
-   *
+   *        Освобождает захваченные ресурсы.
    */
   virtual ~Buffer();
 
   /**
    * @brief Устанавливает данные в аппаратный буфер.
-   *
    * @param[in] data Первоначальный данные.
-   *
    */
-  virtual bool allocate(const void *data);
+  MTHD_OVERRIDE(bool allocate(const void *data));
 
   /**
    * @brief Изменяет данные в уже существующем буфере.
-   *
    * @param[in] offset Начало изменяемого блока данных.
    * @param[in] size Размер изменяемого блока данных.
    * @param[in] source Область памяти, содержащая новые значения.
-   *
    * @sa updateSubdata(const void *)
-   *
    */
-  virtual void updateSubdata(u32_t offset, u32_t size, const void *source);
+  MTHD_OVERRIDE(void updateSubdata(u32_t offset, u32_t size, const void *source));
 
   /**
    * @brief Изменяет данные в уже существующем буфере.
-   *
    * @param[in] source Область памяти, содержащая новые значения.
-   *
    * @sa updateSubdata(u32_t, u32_t, const void *)
-   *
    */
-  virtual void updateSubdata(const void *source);
+  MTHD_OVERRIDE(void updateSubdata(const void *source));
 
   /**
    * @brief Получает указатель на область памяти, в которой находятся данные буфера.
-   *
    * @sa unmap()
-   *
    */
-  virtual auto map() -> void *;
+  // clang-format off
+  MTHD_OVERRIDE(auto map() -> void *);  // clang-format on
 
   /**
    * @brief Возвращает данные буфера в память.
-   *
    * @sa map()
-   *
    */
-  virtual void unmap();
+  MTHD_OVERRIDE(void unmap());
 
   /**
    * @brief Делает буфер текущим.
-   *
    * @sa unbind()
-   *
    */
-  virtual void bind();
+  MTHD_OVERRIDE(void bind());
 
   /**
    * @brief Делает текущим пустой буфер.
-   *
    * @sa bind()
-   *
    */
-  virtual void unbind();
+  MTHD_OVERRIDE(void unbind());
 
   /**
    * @brief Получает целевой тип буфера.
-   *
    */
-  virtual auto getTarget() const -> BufferTarget_t;
+  // clang-format off
+  MTHD_OVERRIDE(auto getTarget() const -> BufferTarget_t);  // clang-format on
 
   /**
    * @brief Получает режим работы с данными.
-   *
    */
-  virtual auto getUsage() const -> BufferUsage_t;
+  // clang-format off
+  MTHD_OVERRIDE(auto getUsage() const -> BufferUsage_t);  // clang-format on
 
   /**
    * @brief Получает количество элементов в массиве.
-   *
    */
-  virtual auto getCapacity() const -> s32_t;
+  // clang-format off
+  MTHD_OVERRIDE(auto getCapacity() const -> s32_t);  // clang-format on
 
   /**
    * @brief Получает размер структуры данных.
-   *
    */
-  virtual auto getByteStride() const -> s32_t;
+  // clang-format off
+  MTHD_OVERRIDE(auto getByteStride() const -> s32_t);  // clang-format on
 
 private:
   BufferTarget_t target_;

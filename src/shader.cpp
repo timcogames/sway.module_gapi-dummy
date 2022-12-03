@@ -3,7 +3,7 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-ShaderRef_t Shader::createInstance(const ShaderCreateInfo &createInfo) {
+auto Shader::createInstance(const ShaderCreateInfo &createInfo) -> ShaderRef_t {
   try {
     auto instance = std::make_shared<Shader>(createInfo.type);
     instance->compile(createInfo.code.c_str());
@@ -27,9 +27,9 @@ Shader::~Shader() {
 
 void Shader::compile([[maybe_unused]] lpcstr_t source) { compiled_ = true; }
 
-bool Shader::isCompiled() const { return compiled_; }
+auto Shader::isCompiled() const -> bool { return compiled_; }
 
-ShaderType_t Shader::getType() const { return type_; }
+auto Shader::getType() const -> ShaderType_t { return type_; }
 
 NAMESPACE_END(gapi)
 NAMESPACE_END(sway)

@@ -3,7 +3,7 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-ViewportRef_t Viewport::createInstance() {
+auto Viewport::createInstance() -> ViewportRef_t {
   auto instance = std::make_shared<Viewport>();
   return instance;
 }
@@ -19,9 +19,9 @@ void Viewport::set(
 
 void Viewport::set(s32_t w, s32_t h) { set(0, 0, w, h); }
 
-math::rect4i_t Viewport::get() const { return math::TRect<s32_t>(); }
+auto Viewport::get() const -> math::rect4i_t { return math::TRect<s32_t>(); }
 
-f32_t Viewport::aspect() const { return 0.0f; }
+auto Viewport::aspect() const -> f32_t { return 0.0f; }
 
 NAMESPACE_END(gapi)
 NAMESPACE_END(sway)

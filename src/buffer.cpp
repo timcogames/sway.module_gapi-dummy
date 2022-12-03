@@ -3,7 +3,7 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-BufferRef_t Buffer::createInstance(const BufferCreateInfo &createInfo) {
+auto Buffer::createInstance(const BufferCreateInfo &createInfo) -> BufferRef_t {
   auto instance = std::make_shared<Buffer>(createInfo.desc);
   if (instance->allocate(createInfo.data)) {
     return instance;
@@ -36,7 +36,7 @@ void Buffer::updateSubdata([[maybe_unused]] const void *source) {
   // Empty
 }
 
-void *Buffer::map() { return nullptr; }
+auto Buffer::map() -> void * { return nullptr; }
 
 void Buffer::unmap() {
   // Empty
@@ -50,13 +50,13 @@ void Buffer::unbind() {
   // Empty
 }
 
-BufferTarget_t Buffer::getTarget() const { return target_; }
+auto Buffer::getTarget() const -> BufferTarget_t { return target_; }
 
-BufferUsage_t Buffer::getUsage() const { return usage_; }
+auto Buffer::getUsage() const -> BufferUsage_t { return usage_; }
 
-s32_t Buffer::getCapacity() const { return capacity_; }
+auto Buffer::getCapacity() const -> s32_t { return capacity_; }
 
-s32_t Buffer::getByteStride() const { return byteStride_; }
+auto Buffer::getByteStride() const -> s32_t { return byteStride_; }
 
 NAMESPACE_END(gapi)
 NAMESPACE_END(sway)

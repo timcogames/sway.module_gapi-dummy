@@ -8,120 +8,96 @@ NAMESPACE_BEGIN(gapi)
 
 /**
  * @brief Представление шейдерной программы.
- *
  */
 class ShaderProgram final : public AShaderProgramBase {
 public:
-  static ShaderProgramRef_t createInstance();
+  static auto createInstance() -> ShaderProgramRef_t;
 
   /**
-   * @brief Конструктор класса.
-   * Выполняет инициализацию нового экземпляра класса.
-   *
+   * @brief Конструктор класса. Выполняет инициализацию нового экземпляра класса.
    */
   ShaderProgram();
 
   /**
-   * @brief Деструктор класса.
-   * Освобождает захваченные ресурсы.
-   *
+   * @brief Деструктор класса. Освобождает захваченные ресурсы.
    */
   virtual ~ShaderProgram();
 
   /**
    * @brief Связывает шейдерный объект с программным объектом.
-   *
    * @param[in] shader Указатель на связываемый шейдерный объект.
-   *
    * @sa detach(u32_t)
-   *
    */
-  virtual void attach(ShaderRef_t shader);
+  MTHD_OVERRIDE(void attach(ShaderRef_t shader));
 
   /**
    * @brief Отсоединяет шейдерный объект от программного объекта.
-   *
    * @param[in] attachedId Отвязываемый шейдерный объект.
-   *
    * @sa attach(ShaderRef_t)
-   *
    */
-  virtual void detach(u32_t attachedId);
+  MTHD_OVERRIDE(void detach(u32_t attachedId));
 
   /**
    * @brief Компонует программный объект.
-   *
    * @sa isLinked() const
-   *
    */
-  virtual void link();
+  MTHD_OVERRIDE(void link());
 
   /**
    * @brief Возвращает статус компоновки.
-   *
    * @sa link()
-   *
    */
-  virtual bool isLinked() const;
+  // clang-format off
+  MTHD_OVERRIDE(auto isLinked() const -> bool);  // clang-format on
 
   /**
    * @brief Проверяет скомпоновонный объект на корректность.
-   *
    * @sa isValidated() const
-   *
    */
-  virtual void validate();
+  MTHD_OVERRIDE(void validate());
 
   /**
    * @brief Возвращает статус корректности скомпоновоного объекта.
-   *
    * @sa validate()
-   *
    */
-  virtual bool isValidated() const;
+  MTHD_OVERRIDE(bool isValidated() const);
 
   /**
    * @brief Делает шейдерную программу активной.
-   *
-   * @sa unuse(), isUsed() const
-   *
+   * @sa unuse(),
+   *     isUsed() const
    */
-  virtual void use();
+  MTHD_OVERRIDE(void use());
 
   /**
    * @brief Деактивирует шейдерную программу.
-   *
-   * @sa use(), isUsed() const
-   *
+   * @sa use(),
+   *     isUsed() const
    */
-  virtual void unuse();
+  MTHD_OVERRIDE(void unuse());
 
   /**
    * @brief Возвращает логическое значение, которое определяет,
-   * является ли шейдерная программа активной в текущем состоянии рендеринга.
-   *
-   * @sa use(), unuse()
-   *
+   *        является ли шейдерная программа активной в текущем состоянии рендеринга.
+   * @sa use(),
+   *     unuse()
    */
-  virtual bool isUsed() const;
+  // clang-format off
+  MTHD_OVERRIDE(auto isUsed() const -> bool);  // clang-format on
 
   /**
    * @brief Передает значение uniform-переменной в шейдер.
-   *
    * @param[in] uniform Имя uniform-переменной.
    * @param[in] vec Значение uniform-переменной.
-   *
    */
-  virtual void setUniformVec4f(const std::string &uniform, const math::vec4f_t &vec);
+  MTHD_OVERRIDE(void setUniformVec4f(const std::string &uniform, const math::vec4f_t &vec));
 
   /**
    * @brief Передает значение uniform-переменной в шейдер.
-   *
    * @param[in] uniform Имя uniform-переменной.
    * @param[in] col Значение uniform-переменной.
-   *
    */
-  virtual void setUniformCol4f(const std::string &uniform, const math::col4f_t &col);
+  MTHD_OVERRIDE(void setUniformCol4f(const std::string &uniform, const math::col4f_t &col));
 
 private:
   bool linked_;

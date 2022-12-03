@@ -12,22 +12,20 @@ public:
 
   /**
    * @brief Конструктор класса.
-   * Выполняет инициализацию нового экземпляра класса.
-   *
+   *        Выполняет инициализацию нового экземпляра класса.
    */
   Capability();
 
   /**
    * @brief Деструктор класса.
-   *
    */
   virtual ~Capability();
 
   /**
    * @brief Возвращает версию OpenGL.
-   *
    */
-  virtual auto getVersion() const -> core::Version;
+  // clang-format off
+  MTHD_OVERRIDE(auto getVersion() const -> core::Version);  // clang-format on
 };
 
 NAMESPACE_END(gapi)

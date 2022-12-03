@@ -4,7 +4,7 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-ShaderProgramRef_t ShaderProgram::createInstance() {
+auto ShaderProgram::createInstance() -> ShaderProgramRef_t {
   auto instance = std::make_shared<ShaderProgram>();
   return instance;
 }

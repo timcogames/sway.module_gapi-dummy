@@ -9,43 +9,35 @@ NAMESPACE_BEGIN(gapi)
 
 class VertexLayout : public IVertexLayoutBase {
 public:
-  static VertexLayoutRef_t createInstance(ShaderProgramRef_t program);
+  static auto createInstance(ShaderProgramRef_t program) -> VertexLayoutRef_t;
 
   /**
    * @brief Конструктор класса.
-   * Выполняет инициализацию нового экземпляра класса.
-   *
+   *        Выполняет инициализацию нового экземпляра класса.
    * @param[in] program Указатель на шейдерную программу.
-   *
    */
   VertexLayout(ShaderProgramRef_t program);
 
   /**
-   * @brief Деструктор класса.
-   * Освобождает захваченные ресурсы.
-   *
+   * @brief Деструктор класса. Освобождает захваченные ресурсы.
    */
   virtual ~VertexLayout();
 
   /**
    * @brief Добавляет вершинный атрибут.
-   *
    * @param[in] desc Описание вершинного атрибута.
-   *
    */
-  virtual void addAttribute(VertexAttributeDescriptor desc);
+  MTHD_OVERRIDE(void addAttribute(VertexAttributeDescriptor desc));
 
   /**
    * @brief Включает чтение атрибутов.
-   *
    */
-  virtual void enable();
+  MTHD_OVERRIDE(void enable());
 
   /**
    * @brief Отключает чтение атрибутов.
-   *
    */
-  virtual void disable();
+  MTHD_OVERRIDE(void disable());
 };
 
 NAMESPACE_END(gapi)

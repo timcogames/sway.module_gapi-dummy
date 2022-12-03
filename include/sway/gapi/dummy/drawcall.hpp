@@ -12,8 +12,7 @@ public:
 
   /**
    * @brief Конструктор класса.
-   * Выполняет инициализацию нового экземпляра класса.
-   *
+   *        Выполняет инициализацию нового экземпляра класса.
    */
   DrawCall() {
     // Empty
@@ -21,7 +20,6 @@ public:
 
   /**
    * @brief Деструктор класса.
-   *
    */
   virtual ~DrawCall() {
     // Empty
@@ -29,14 +27,12 @@ public:
 
   /**
    * @brief Выполняет отрисовку примитива.
-   *
    * @param[in] topology Топология примитива.
    * @param[in] count Количество отображаемых элементов.
    * @param[in] ibo Указатель на буфер индексов.
    * @param[in] type Тип значений в индексах.
-   *
    */
-  virtual void execute(TopologyType_t topology, s32_t count, BufferRef_t ibo, core::detail::DataType_t type);
+  MTHD_OVERRIDE(void execute(TopologyType_t topology, s32_t count, BufferRef_t ibo, core::detail::DataType_t type));
 };
 
 NAMESPACE_END(gapi)
