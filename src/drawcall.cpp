@@ -9,8 +9,8 @@ auto DrawCall::createInstance() -> DrawCallRef_t {
   return instance;
 }
 
-void DrawCall::execute([[maybe_unused]] TopologyType_t topology, [[maybe_unused]] s32_t count,
-    [[maybe_unused]] BufferRef_t ibo, [[maybe_unused]] core::detail::DataType_t type) {
+void DrawCall::execute([[maybe_unused]] TopologyType_t topology, [[maybe_unused]] BufferSet bufset,
+    [[maybe_unused]] core::ValueDataType type) {
   // Empty
 }
 

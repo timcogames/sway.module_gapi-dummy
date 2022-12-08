@@ -9,12 +9,13 @@ NAMESPACE_BEGIN(gapi)
 /**
  * @brief Представление шейдерного объекта.
  */
-class Shader final : public AShaderBase {
+class Shader final : public ShaderBase {
 public:
   static auto createInstance(const ShaderCreateInfo &createInfo) -> ShaderRef_t;
 
   /**
    * @brief Конструктор класса. Выполняет инициализацию нового экземпляра класса.
+   *
    * @param[in] type Тип создаваемого шейдера.
    */
   Shader(ShaderType_t type);
@@ -26,12 +27,14 @@ public:
 
   /**
    * @brief Выполняет компиляцию шейдерного объекта.
+   *
    * @param[in] source Исходный код шейдера.
    */
   MTHD_OVERRIDE(void compile(lpcstr_t source));
 
   /**
    * @brief Возвращает статус компиляции.
+   *
    * @return Если компиляция прошла успешно 'true', иначе 'false'.
    */
   // clang-format off
@@ -39,6 +42,7 @@ public:
 
   /**
    * @brief Получает тип шейдера.
+   *
    * @return Тип шейдера.
    */
   // clang-format off

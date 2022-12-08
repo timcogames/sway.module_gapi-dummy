@@ -3,8 +3,8 @@
 NAMESPACE_BEGIN(sway)
 NAMESPACE_BEGIN(gapi)
 
-auto Buffer::createInstance(const BufferCreateInfo &createInfo) -> BufferRef_t {
-  auto instance = std::make_shared<Buffer>(createInfo.desc);
+auto Buffer::createInstance(BufferIdQueueRef_t idQueue, const BufferCreateInfo &createInfo) -> BufferRef_t {
+  auto instance = std::make_shared<Buffer>(idQueue, createInfo.desc);
   if (instance->allocate(createInfo.data)) {
     return instance;
   }
@@ -12,8 +12,8 @@ auto Buffer::createInstance(const BufferCreateInfo &createInfo) -> BufferRef_t {
   return nullptr;
 }
 
-Buffer::Buffer(const BufferDescriptor &desc)
-    : ABufferBase(desc)
+Buffer::Buffer(BufferIdQueueRef_t idQueue, const BufferDescriptor &desc)
+    : BufferBase(desc)
     , target_(desc.target)
     , usage_(desc.usage)
     , byteStride_(desc.byteStride)

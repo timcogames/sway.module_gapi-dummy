@@ -55,5 +55,9 @@ void ShaderProgram::setUniformCol4f(
   // Empty
 }
 
+void ShaderProgram::setUniformMat4f(const std::string &uniform, const math::mat4f_t &mat) {
+  // Empty
+}
+
 NAMESPACE_END(gapi)
 NAMESPACE_END(sway)

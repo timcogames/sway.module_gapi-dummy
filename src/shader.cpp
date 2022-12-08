@@ -15,7 +15,7 @@ auto Shader::createInstance(const ShaderCreateInfo &createInfo) -> ShaderRef_t {
 }
 
 Shader::Shader(ShaderType_t type)
-    : AShaderBase(type)
+    : ShaderBase(type)
     , type_(type)
     , compiled_(false) {
   // Empty
